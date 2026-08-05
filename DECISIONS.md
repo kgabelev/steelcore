@@ -42,8 +42,9 @@ The final workflow compares and synthesizes both perspectives.
 
 ## D-006 — First vertical slice
 
-**Status:** Proposed for owner approval  
-**Date:** 2026-08-05
+**Status:** Approved  
+**Date:** 2026-08-05  
+**Approved by:** Kirill Gabelev
 
 The first end-to-end product is the **Steel Creative Session** described in `PROJECT_CONTEXT.md`. No autonomous social, release, or large-scale fan system is built before this slice passes acceptance tests.
 
