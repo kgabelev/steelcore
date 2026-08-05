@@ -43,3 +43,10 @@ The items below remain unresolved until reviewed against current primary sources
 - draft disclosures and metadata;
 - intended territories, platforms, and contracts;
 - unresolved items from `legal/risk-checklist.md`.
+
+## Provenance fields counsel should not conflate
+
+- `classification` records artifact state only: unresolved / evidence / experiment / candidate / canon.
+- `approvals` records human decisions, including canon and release approvals.
+- `release_clearance` records the separate clearance gate: cleared / pending / rejected / unresolved / unknown / not_applicable.
+- `release` records actual distribution state: unreleased / scheduled / released / withdrawn / blocked.
