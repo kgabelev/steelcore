@@ -1,8 +1,9 @@
 # AI Music Distribution, Competitive Landscape, and Risk — Source-Derived Synthesis
 
 **Source ID:** `industry-2026-001`  
-**Classification:** Evidence, not approved release policy  
-**Verification:** Distributor and platform claims are time-sensitive and require official-source revalidation
+**Canonical source record:** [research/source-register.csv](../../source-register.csv)  
+**Classification:** Secondary evidence, not approved release policy  
+**Verification:** Every distributor and platform claim remains pending current official-source verification
 
 ## What the uploaded report says
 
