@@ -1,8 +1,9 @@
 # AI Music Legal, IP, and Business Structure — Source-Derived Synthesis
 
 **Source ID:** `legal-2026-001`  
-**Classification:** Evidence, not approved legal policy  
-**Verification:** Material claims require current primary-source and counsel review
+**Canonical source record:** [research/source-register.csv](../../source-register.csv)  
+**Classification:** Secondary evidence, not approved legal policy  
+**Verification:** Every material claim remains pending current primary-source and counsel review
 
 ## What the uploaded report says
 
