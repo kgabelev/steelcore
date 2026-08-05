@@ -11,6 +11,7 @@ from jsonschema import Draft202012Validator, FormatChecker
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = ROOT / "schemas/provenance/artifact-provenance.schema.json"
 EXAMPLES = ROOT / "examples/provenance"
+CATALOG = ROOT / "catalog"
 DOCS = [ROOT / "legal/rights-and-provenance.md", ROOT / "legal/authorship-log-template.md", ROOT / "legal/disclosure-statement.md", ROOT / "legal/counsel-review-needed.md", ROOT / "legal/risk-checklist.md"]
 
 CLASSIFICATIONS = {"unresolved", "evidence", "experiment", "candidate", "canon"}
@@ -86,6 +87,15 @@ def test_examples(validator: Draft202012Validator) -> None:
     require(not any(a["approval_type"] == "canon" and a["status"] == "approved" for a in legacy["approvals"]), "legacy example must not be canon-approved")
 
 
+def test_catalog_provenance_records(validator: Draft202012Validator) -> None:
+    records = sorted(CATALOG.glob("**/provenance.json"))
+    require(records, "no catalog provenance.json records found under catalog/**/provenance.json")
+    for path in records:
+        record = load(path)
+        validate_schema_record(validator, record, path.relative_to(ROOT))
+        validate_record(record)
+
+
 def require_schema_failure(validator: Draft202012Validator, record: dict, message: str) -> None:
     if not list(validator.iter_errors(record)):
         raise AssertionError(message)
@@ -118,6 +128,7 @@ def test_docs_terms() -> None:
 def main() -> None:
     validator = build_validator()
     test_examples(validator)
+    test_catalog_provenance_records(validator)
     test_invalid_claims_fail(validator)
     test_one_of_unknowns_are_unambiguous(validator)
     test_docs_terms()
