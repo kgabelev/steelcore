@@ -1,0 +1,44 @@
+name: Validate AI Resource Control Plane
+
+on:
+  pull_request:
+    paths:
+      - "system/control-plane/**"
+      - "scripts/validate_control_plane.py"
+      - ".github/workflows/control-plane-validate.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "system/control-plane/**"
+      - "scripts/validate_control_plane.py"
+      - ".github/workflows/control-plane-validate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: control-plane-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: system/control-plane/requirements.txt
+
+      - name: Install validator dependency
+        run: python -m pip install --disable-pip-version-check -r system/control-plane/requirements.txt
+
+      - name: Validate control-plane files
+        run: python scripts/validate_control_plane.py
