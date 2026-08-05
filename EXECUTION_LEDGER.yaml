@@ -1,0 +1,129 @@
+schema_version: "0.1"
+last_updated: "2026-08-05T04:57:00-04:00"
+repository: kgabelev/steelcore
+owner: Kirill Gabelev
+current_milestone: M1-canonical-project-foundation
+
+rules:
+  one_branch_or_worktree_per_implementation_agent: true
+  overlapping_owned_paths_allowed: false
+  independent_review_may_duplicate_analysis: true
+  merge_order_follows_dependencies: true
+  human_approval_required_for:
+    - persona_canon
+    - legal_posture
+    - public_release
+    - external_posting
+    - spending
+    - destructive_actions
+    - production_deployment
+
+workstreams:
+  - id: foundation-core
+    milestone: M1
+    objective: Replace placeholder project documents and expose the critical path.
+    owner: GPT-5.6-Thinking
+    branch: foundation/canonical-project-core
+    owned_paths:
+      - PROJECT_CONTEXT.md
+      - CURRENT_STATE.md
+      - DECISIONS.md
+      - ROADMAP.md
+      - EXECUTION_LEDGER.yaml
+      - CLAUDE.md
+      - HANDOFF_TEMPLATE.md
+    dependencies: []
+    acceptance_tests:
+      - critical_path_is_visible
+      - first_vertical_slice_is_bounded
+      - approval_boundaries_are_explicit
+      - agent_ownership_rules_are_explicit
+      - control_plane_ci_passes
+    status: in_progress
+    next_action: open_and_verify_pull_request_3
+
+  - id: creative-catalog-import
+    milestone: M2
+    objective: Import existing Steel and Alma-and-Steel creative artifacts without altering originals.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - catalog/
+      - research/source-register-creative.csv
+    dependencies:
+      - foundation-core
+    status: blocked
+
+  - id: research-import
+    milestone: M2
+    objective: Import legal, platform, industry, cultural, and music research with traceable sources.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - research/
+      - knowledge-base/
+    dependencies:
+      - foundation-core
+    status: blocked
+
+  - id: provenance-framework
+    milestone: M2
+    objective: Define authorship, AI-tool, rights, approval, and release-state records.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - legal/
+      - schemas/provenance/
+    dependencies:
+      - foundation-core
+    status: blocked
+
+  - id: artist-canon
+    milestone: M3
+    objective: Build and approve the Steel artist-bible baseline from classified sources.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - artist-bible/
+    dependencies:
+      - creative-catalog-import
+      - research-import
+    status: blocked
+
+  - id: memory-and-evals
+    milestone: M3
+    objective: Build memory contracts, promotion rules, retrieval tests, and creative evals.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - system/memory/
+      - evals/
+    dependencies:
+      - artist-canon
+      - provenance-framework
+    status: blocked
+
+  - id: creative-session-runtime
+    milestone: M4
+    objective: Implement the Steel Creative Session vertical slice.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - src/
+      - tests/
+    dependencies:
+      - memory-and-evals
+      - owner_approval_D-006
+    status: blocked
+
+  - id: buzz-acp-integration
+    milestone: M5
+    objective: Expose the proven creative session safely inside Buzz.
+    owner: unassigned
+    branch: pending
+    owned_paths:
+      - integrations/buzz/
+      - system/security-and-permissions.md
+    dependencies:
+      - creative-session-runtime
+    status: blocked
