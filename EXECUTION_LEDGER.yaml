@@ -1,5 +1,5 @@
 schema_version: "0.1"
-last_updated: "2026-08-05T05:12:00-04:00"
+last_updated: "2026-08-05T07:36:35-04:00"
 repository: kgabelev/steelcore
 owner: Kirill Gabelev
 current_milestone: M2-canonical-source-import-and-provenance
@@ -38,8 +38,11 @@ workstreams:
       - first_vertical_slice_is_bounded
       - approval_boundaries_are_explicit
       - agent_ownership_rules_are_explicit
+      - control_plane_ci_passes
     status: complete
-    completion_evidence: PR-3-merged
+    completion_evidence:
+      - PR-3-merged
+      - github-actions-validate-ai-resource-control-plane-run-30992427627-passed-on-PR-4-head-77f2963cd0913173ce928fcde6bc17f78363aa5a
 
   - id: creative-catalog-import
     milestone: M2
@@ -51,13 +54,16 @@ workstreams:
       - research/source-register-creative.csv
     dependencies:
       - foundation-core
+      - provenance-framework
+    pull_request: 5
+    reviewed_head: 6db5ea4240cc629006f1e316c3e8de9a6ec12eb6
     acceptance_tests:
       - known_creative_sources_are_inventoried
       - Sauce_text_matches_uploaded_source
       - each_item_has_classification_and_import_status
       - unknown_authorship_and_rights_are_not_invented
-    status: in_progress
-    next_action: inspect_diff_and_open_catalog_import_pr
+    status: rework_required
+    next_action: align_the_source_record_with_the_merged_provenance_contract_and_preserve_or_immutably_reference_the_original_source_before_text_verification
 
   - id: research-import
     milestone: M2
@@ -69,13 +75,15 @@ workstreams:
       - knowledge-base/
     dependencies:
       - foundation-core
+    pull_request: 6
+    reviewed_head: 214c7607ba9760abd487b5b1f32c1ca12f24e1f3
     acceptance_tests:
       - each_report_has_source_register_entry
       - synthesis_is_distinguished_from_verified_policy
       - material_claims_are_flagged_for_primary_source_verification
       - open_questions_are_recorded
-    status: in_progress
-    next_action: inspect_diff_and_open_research_import_pr
+    status: rework_required
+    next_action: consolidate_the_canonical_research_source_register_and_open_questions_topology_before_merge
 
   - id: provenance-framework
     milestone: M2
@@ -87,14 +95,16 @@ workstreams:
       - schemas/provenance/
     dependencies:
       - foundation-core
+    pull_request: 7
+    reviewed_head: b6a73fa365c9f3bea6f306feb3e72da1c56ee7c1
     acceptance_tests:
       - provenance_schema_is_valid_json
       - authorship_template_covers_human_and_ai_contributions
       - canon_and_release_gates_are_separate
       - disclosure_never_exceeds_evidence
       - counsel_review_queue_is_explicit
-    status: in_progress
-    next_action: validate_schema_inspect_diff_and_open_provenance_pr
+    status: rework_required
+    next_action: model_explicit_unknowns_and_enforce_release_eligibility_in_the_provenance_contract
 
   - id: artist-canon
     milestone: M3
@@ -145,3 +155,21 @@ workstreams:
     dependencies:
       - creative-session-runtime
     status: blocked
+
+review_processing_order:
+  - pull_request: 7
+    workstream: provenance-framework
+    status: rework_required
+    reason: The provenance contract must explicitly model unknowns and release eligibility before creative records depend on it.
+  - pull_request: 5
+    workstream: creative-catalog-import
+    status: rework_required
+    dependencies:
+      - PR-7-provenance-framework
+    reason: The Sauce record must conform to the settled provenance contract and retain verifiable source evidence.
+  - pull_request: 6
+    workstream: research-import
+    status: rework_required
+    dependencies:
+      - foundation-core
+    reason: This workstream is independent of PRs 5 and 7, but may merge only after it consolidates the research-register topology.
