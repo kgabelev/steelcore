@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.2",
+  "artifact_id": "steel-demo-001",
+  "artifact_version": "v1.0.0",
+  "artifact_type": "mixed",
+  "title": "Evidenced canon release example",
+  "created_at": "2026-08-05T00:00:00Z",
+  "classification": "canon",
+  "human_contributors": [
+    {"name": "Steelcore Owner", "role": "creative_director", "contribution": "Selected concept, edited lyrics, approved arrangement, and approved final release package.", "evidence_status": "documented", "evidence_refs": ["repo:examples/provenance/evidence/human-notes.md"]}
+  ],
+  "ai_systems": [
+    {"provider": "Example Provider", "product": "Example Generator", "model_or_version": "example-model-1", "plan": "example-commercial-plan", "used_for": ["instrumental sketch", "reference vocal"], "usage_date": "2026-08-04T12:00:00Z", "prompt_or_session_refs": ["session:example-123"], "terms_snapshot_status": "captured", "terms_snapshot_ref": "terms:example-provider-2026-08-04"}
+  ],
+  "source_inputs": [
+    {"source_id": "owner-lyrics-v1", "source_type": "lyrics", "description": "Owner-edited lyrics draft.", "rights_status": "owned", "source_ref": "repo:catalog/songs/example/lyrics-v1.md"}
+  ],
+  "transformations": [
+    {"timestamp": "2026-08-04T13:00:00Z", "actor": "Steelcore Owner", "action": "Edited generated sketch into release candidate while preserving original files.", "input_version": "draft-v1", "output_version": "v1.0.0", "evidence_refs": ["commit:example"]}
+  ],
+  "rights": {"human_authorship_status": "documented", "ai_generated_material": ["instrumental sketch", "reference vocal"], "ownership_status": "cleared", "ownership_evidence_refs": ["terms:example-provider-2026-08-04", "repo:examples/provenance/evidence/human-notes.md"], "voice_likeness_status": "cleared", "voice_likeness_evidence_refs": ["review:voice-likeness-example"], "cultural_review_status": "not_applicable", "cultural_review_evidence_refs": [], "limitations_or_exclusions": ["No warranty beyond cited evidence and reviews."]},
+  "disclosure": {"ai_involvement_summary": "Human-led production using AI-assisted instrumental sketching and reference vocals.", "public_disclosure_status": "approved", "platform_metadata_status": "prepared", "disclosure_ref": "disclosure:steel-demo-001-v1"},
+  "approvals": [
+    {"approval_type": "canon", "status": "approved", "reviewer": "Steelcore Owner", "timestamp": "2026-08-05T09:00:00Z", "evidence_refs": ["approval:canon-steel-demo-001"], "notes": "Canon approval only; not a legal warranty."},
+    {"approval_type": "release", "status": "approved", "reviewer": "Steelcore Owner", "timestamp": "2026-08-05T10:00:00Z", "evidence_refs": ["approval:release-steel-demo-001", "terms:example-provider-2026-08-04"], "notes": "Release approval based on cited evidence and controls."}
+  ],
+  "release_clearance": {"status": "cleared", "reviewer": "Steelcore Owner", "timestamp": "2026-08-05T10:00:00Z", "evidence_refs": ["approval:release-steel-demo-001", "terms:example-provider-2026-08-04", "review:voice-likeness-example"], "notes": "Separate from canon approval."},
+  "release": {"status": "scheduled", "destinations": ["example distributor"], "release_date": "2026-09-01T00:00:00Z", "release_refs": ["release:submission-example"]}
+}
