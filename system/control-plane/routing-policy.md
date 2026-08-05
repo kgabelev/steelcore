@@ -45,6 +45,8 @@ Never use a loop without a score, stopping threshold, maximum iterations, and co
 
 ## Branch and collision control
 
+Branch collision prevention and duplicate work prevention are enforced through explicit branch, owner, and file-path assignments.
+
 Branch names use `<domain>/<objective>-<agent>`. The orchestrator maintains a task ledger containing branch, owner, file paths, dependencies, and status. Agents may not edit unowned paths without requesting reassignment. Integration order follows dependency order, not completion time.
 
 Before merge:
