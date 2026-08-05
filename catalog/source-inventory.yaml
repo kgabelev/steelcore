@@ -1,0 +1,93 @@
+schema_version: "0.1"
+last_updated: "2026-08-05T05:08:00-04:00"
+classification_rules:
+  canon: human_approved_and_authoritative
+  candidate: eligible_for_review
+  experiment: historical_iteration_not_approved
+  evidence: supports_a_decision_but_is_not_canon
+  unresolved: insufficient_context
+
+sources:
+  - source_id: creative-song-sauce
+    filename: Sauce.pdf
+    uploaded_file_id: file_000000008e7081f78a1d41c64f7c6111
+    source_type: lyrics_and_style_prompt
+    classification: experiment
+    import_status: text_imported_binary_pending
+    destination: catalog/songs/sauce/
+
+  - source_id: artwork-256
+    filename: image(256).png
+    uploaded_file_id: file_00000000828881f79dff7fea3904ec90
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-255
+    filename: image(255).png
+    uploaded_file_id: file_00000000f6d081f9926753df23834972
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-254
+    filename: image(254).png
+    uploaded_file_id: file_000000001458820db06c53fe5ea55cb5
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-253
+    filename: image(253).png
+    uploaded_file_id: file_00000000f82081f98040c474023cddaa
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-252
+    filename: image(252).png
+    uploaded_file_id: file_00000000bf7c81f98d4076b47e7068b6
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-251
+    filename: image(251).png
+    uploaded_file_id: file_000000006230820c86392df836c9c498
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-250
+    filename: image(250).png
+    uploaded_file_id: file_00000000ae5481f9b51d7724006c6aac
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-249
+    filename: image(249).png
+    uploaded_file_id: file_00000000576481fb8cda45c59047e6af
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-248
+    filename: image(248).png
+    uploaded_file_id: file_00000000a0d4822f9388f4ed2cb2f137
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+  - source_id: artwork-247
+    filename: image(247).png
+    uploaded_file_id: file_00000000859881fbb0c57e35a5173a58
+    source_type: artwork_candidate
+    classification: unresolved
+    import_status: inventory_only
+
+next_batch_requirements:
+  - inventory all Suno song and variation links
+  - map artwork candidates to artist or release concepts
+  - preserve original binary files
+  - document creator, model, prompt, edits, and generation date where available
