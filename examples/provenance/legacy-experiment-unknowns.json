@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.2",
+  "artifact_id": "legacy-sketch-001",
+  "artifact_version": "imported-v1",
+  "artifact_type": "audio",
+  "title": "Legacy sketch with incomplete provenance",
+  "created_at": "unknown",
+  "classification": "experiment",
+  "human_contributors": [
+    {"name": "unknown", "role": "unknown", "contribution": "Legacy import notes identify possible human editing, but the contributor and scope are unknown.", "evidence_status": "unknown", "evidence_refs": []}
+  ],
+  "ai_systems": [
+    {"provider": "unknown", "product": "unknown", "model_or_version": "unknown", "plan": "unknown", "used_for": ["unknown legacy generation or editing"], "usage_date": "unknown", "prompt_or_session_refs": [], "terms_snapshot_status": "unknown", "terms_snapshot_ref": null}
+  ],
+  "source_inputs": [
+    {"source_id": "legacy-bundle-001", "source_type": "imported_file", "description": "Unverified file from legacy creative archive.", "rights_status": "unknown", "source_ref": null}
+  ],
+  "transformations": [
+    {"timestamp": "unknown", "actor": "unknown", "action": "Imported without modifying the original creative file.", "input_version": "legacy-original", "output_version": "imported-v1", "evidence_refs": []}
+  ],
+  "rights": {"human_authorship_status": "unknown", "ai_generated_material": ["unknown"], "ownership_status": "unknown", "ownership_evidence_refs": [], "voice_likeness_status": "unknown", "voice_likeness_evidence_refs": [], "cultural_review_status": "unknown", "cultural_review_evidence_refs": [], "limitations_or_exclusions": ["Not canon-approved.", "Not release-cleared."]},
+  "disclosure": {"ai_involvement_summary": "AI involvement is unknown for this legacy import.", "public_disclosure_status": "unresolved", "platform_metadata_status": "unresolved", "disclosure_ref": null},
+  "approvals": [
+    {"approval_type": "canon", "status": "pending", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Incomplete legacy experiment is blocked from canon promotion until evidence is reviewed."},
+    {"approval_type": "release", "status": "pending", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Release approval is blocked by unresolved material rights."}
+  ],
+  "release_clearance": {"status": "unresolved", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Explicitly not cleared."},
+  "release": {"status": "blocked", "destinations": [], "release_date": null, "release_refs": []}
+}
