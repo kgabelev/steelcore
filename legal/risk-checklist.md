@@ -9,7 +9,7 @@ Use this checklist before promoting an artifact to canon and again before any pu
 - [ ] AI systems, model/version, plan, usage date, and session references are documented.
 - [ ] Source inputs and rights status are documented.
 - [ ] Material edits and transformations are traceable by version.
-- [ ] Unknowns remain explicit and have an owner for resolution.
+- [ ] Unknowns remain explicit as schema-valid `unknown`, `unresolved`, `pending`, `not_applicable`, `null`, or empty evidence arrays and have an owner for resolution when resolution is required.
 
 ## Rights and authorship
 
@@ -48,6 +48,10 @@ Use this checklist before promoting an artifact to canon and again before any pu
 - [ ] Destructive actions, spending, publication, and deployment have explicit approval.
 - [ ] Release artifacts, metadata, and approvals are backed up and reproducible.
 
-## Release gate
+## Canon gate
 
-Release is blocked if any required item is unchecked, marked unknown, or contradicted by the provenance record unless the owner records a specific risk acceptance after appropriate professional review.
+Canon promotion requires `classification: "canon"` and a matching `approvals` record with `approval_type: "canon"`, `status: "approved"`, reviewer, timestamp, and evidence. Canon approval does not imply legal, commercial-release, platform, or disclosure clearance.
+
+## Release clearance gate
+
+`release_clearance.status: "cleared"` is blocked if any required item is unchecked, marked `unknown`, `unresolved`, `pending`, or contradicted by the provenance record. Clearance requires resolved material rights, required voice/likeness and cultural review states, release approval evidence, and explicit owner or professional review where required. A blocked or unresolved `release_clearance` may coexist with `release.status: "unreleased"` or `release.status: "blocked"`.

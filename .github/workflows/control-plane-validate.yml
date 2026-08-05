@@ -6,6 +6,10 @@ on:
       - "system/control-plane/**"
       - "scripts/validate_control_plane.py"
       - ".github/workflows/control-plane-validate.yml"
+      - "schemas/provenance/**"
+      - "examples/provenance/**"
+      - "tests/provenance/**"
+      - "legal/**"
   push:
     branches:
       - main
@@ -13,6 +17,10 @@ on:
       - "system/control-plane/**"
       - "scripts/validate_control_plane.py"
       - ".github/workflows/control-plane-validate.yml"
+      - "schemas/provenance/**"
+      - "examples/provenance/**"
+      - "tests/provenance/**"
+      - "legal/**"
   workflow_dispatch:
 
 permissions:
@@ -35,10 +43,17 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-          cache-dependency-path: system/control-plane/requirements.txt
+          cache-dependency-path: |
+            system/control-plane/requirements.txt
+            tests/provenance/requirements.txt
 
-      - name: Install validator dependency
-        run: python -m pip install --disable-pip-version-check -r system/control-plane/requirements.txt
+      - name: Install validator dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -r system/control-plane/requirements.txt
+          python -m pip install --disable-pip-version-check -r tests/provenance/requirements.txt
 
       - name: Validate control-plane files
         run: python scripts/validate_control_plane.py
+
+      - name: Validate provenance schema and fixtures
+        run: python tests/provenance/validate_provenance.py
