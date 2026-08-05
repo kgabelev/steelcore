@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.2",
+  "artifact_id": "creative-song-sauce-v0",
+  "artifact_version": "imported-v0",
+  "artifact_type": "mixed",
+  "title": "Sauce",
+  "created_at": "unknown",
+  "classification": "experiment",
+  "human_contributors": [
+    {"name": "unknown", "role": "unknown", "contribution": "Human contribution has not yet been documented in the available source.", "evidence_status": "unknown", "evidence_refs": []}
+  ],
+  "ai_systems": [
+    {"provider": "unknown", "product": "unknown", "model_or_version": "unknown", "plan": "unknown", "used_for": ["unknown generation and/or editing of the lyrics and style prompt"], "usage_date": "unknown", "prompt_or_session_refs": [], "terms_snapshot_status": "unknown", "terms_snapshot_ref": null}
+  ],
+  "source_inputs": [
+    {"source_id": "sauce-source-pdf", "source_type": "uploaded_file", "description": "Original uploaded file Sauce.pdf (style prompt and lyrics text), uploaded_file_id file_000000008e7081f78a1d41c64f7c6111, uploaded 2026-08-05. The source resembles a music-generation prompt/output package, but the specific generation tool and plan are not stated in it. Binary preservation in the repository or approved object storage is pending; only extracted text was imported.", "rights_status": "unresolved", "source_ref": "upload:file_000000008e7081f78a1d41c64f7c6111"}
+  ],
+  "transformations": [
+    {"timestamp": "unknown", "actor": "unknown", "action": "Transcribed lyrics and style prompt text from Sauce.pdf without creative rewriting; normalized formatting into Markdown sections. Original PDF bytes were not altered but have not yet been preserved in the repository or approved object storage.", "input_version": "Sauce.pdf", "output_version": "imported-v0", "evidence_refs": []}
+  ],
+  "rights": {
+    "human_authorship_status": "unknown",
+    "ai_generated_material": ["unknown"],
+    "ownership_status": "unresolved",
+    "ownership_evidence_refs": [],
+    "voice_likeness_status": "not_applicable",
+    "voice_likeness_evidence_refs": [],
+    "cultural_review_status": "unresolved",
+    "cultural_review_evidence_refs": [],
+    "limitations_or_exclusions": [
+      "Not canon-approved.",
+      "Not release-cleared.",
+      "Lyric authorship and editing history not yet confirmed.",
+      "Generation platform, subscription plan, and generation date not yet confirmed.",
+      "Suno link(s) and audio variation identifiers, if any, not yet attached.",
+      "Original Sauce.pdf binary not yet preserved in the repository or approved object storage; only transcribed text was imported.",
+      "Fit against Steel creative identity has not yet been scored; artifact remains an unreviewed experiment, not a candidate."
+    ]
+  },
+  "disclosure": {
+    "ai_involvement_summary": "AI involvement is unknown. The source resembles a music-generation prompt/output package, but the specific generation platform, model, and plan are not stated in the uploaded source file.",
+    "public_disclosure_status": "unresolved",
+    "platform_metadata_status": "unresolved",
+    "disclosure_ref": null
+  },
+  "approvals": [
+    {"approval_type": "canon", "status": "pending", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Classified as an experiment pending human review; not yet scored against Steel creative identity or approved as canon."},
+    {"approval_type": "release", "status": "pending", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Release is blocked pending resolution of authorship, rights, generation-platform evidence, and binary preservation."}
+  ],
+  "release_clearance": {"status": "unresolved", "reviewer": null, "timestamp": null, "evidence_refs": [], "notes": "Release clearance has not been evaluated; rights, authorship, and platform evidence remain unresolved."},
+  "release": {"status": "blocked", "destinations": [], "release_date": null, "release_refs": []}
+}
