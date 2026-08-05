@@ -1,4 +1,4 @@
-schema_version: "0.1"
+schema_version: "0.2"
 last_updated: "2026-08-05T05:08:00-04:00"
 classification_rules:
   canon: human_approved_and_authoritative
@@ -6,6 +6,8 @@ classification_rules:
   experiment: historical_iteration_not_approved
   evidence: supports_a_decision_but_is_not_canon
   unresolved: insufficient_context
+notes:
+  - This inventory records import and classification status only. It does not assert canon status, human authorship, rights clearance, or release clearance for any listed source; those determinations live in each artifact's provenance record validated against schemas/provenance/artifact-provenance.schema.json.
 
 sources:
   - source_id: creative-song-sauce
@@ -15,6 +17,7 @@ sources:
     classification: experiment
     import_status: text_imported_binary_pending
     destination: catalog/songs/sauce/
+    provenance_record: catalog/songs/sauce/provenance.json
 
   - source_id: artwork-256
     filename: image(256).png
