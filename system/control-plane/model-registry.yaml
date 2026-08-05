@@ -1,0 +1,329 @@
+schema_version: "0.1"
+last_updated: "2026-08-05T04:37:00-04:00"
+policy:
+  capability_first_for_critical_work: true
+  cheapest_model_that_passes_evals: true
+  pin_production_model_versions: true
+  reverify_after_days: 14
+  access_note: "Model availability inside subscription products must be confirmed in each provider UI before dispatch."
+
+models:
+  - provider: openai
+    model: gpt-5.6-sol
+    strongest_use_cases:
+      - system architecture
+      - complex professional reasoning
+      - hard agentic coding
+      - final verification and adversarial review
+    weaknesses:
+      - premium token cost
+      - unnecessary for routine implementation
+    cloud_vs_local: cloud
+    cost_class: premium
+    quota_class: premium_pool
+    preferred_role: chief_architect_and_release_reviewer
+    fallback_model: gpt-5.6-terra
+    access_status: verify_in_chatgpt_or_api
+    last_verified_date: "2026-08-05"
+
+  - provider: openai
+    model: gpt-5.6-terra
+    strongest_use_cases:
+      - primary Codex implementation
+      - feature work
+      - repository analysis
+      - test generation and repair
+    weaknesses:
+      - below Sol on the hardest judgment-heavy tasks
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: standard_agentic_pool
+    preferred_role: primary_implementation_agent
+    fallback_model: gpt-5.6-luna
+    access_status: verify_in_codex
+    last_verified_date: "2026-08-05"
+
+  - provider: openai
+    model: gpt-5.6-luna
+    strongest_use_cases:
+      - repetitive repository chores
+      - structured extraction
+      - low-risk subagent work
+      - first-pass tests and documentation
+    weaknesses:
+      - lower peak reasoning and coding quality
+    cloud_vs_local: cloud
+    cost_class: low
+    quota_class: high_volume
+    preferred_role: economical_subagent
+    fallback_model: gemini-3.5-flash-lite
+    access_status: verify_in_api
+    last_verified_date: "2026-08-05"
+
+  - provider: anthropic
+    model: claude-fable-5
+    strongest_use_cases:
+      - highest-capability long-running agents
+      - deep reasoning
+      - long-horizon autonomous execution
+    weaknesses:
+      - highest Anthropic cost
+      - access may depend on account surface
+    cloud_vs_local: cloud
+    cost_class: ultra_premium
+    quota_class: exceptional_only
+    preferred_role: escalation_agent_for_unsolved_tasks
+    fallback_model: claude-opus-5
+    access_status: verify_in_claude_code
+    last_verified_date: "2026-08-05"
+
+  - provider: anthropic
+    model: claude-opus-5
+    strongest_use_cases:
+      - complex agentic coding
+      - large refactors
+      - high-autonomy engineering
+      - vision-heavy verification
+    weaknesses:
+      - premium cost
+      - slower than Sonnet
+    cloud_vs_local: cloud
+    cost_class: premium
+    quota_class: premium_pool
+    preferred_role: senior_engineer_and_independent_reviewer
+    fallback_model: claude-sonnet-5
+    access_status: verify_in_claude_code
+    last_verified_date: "2026-08-05"
+
+  - provider: anthropic
+    model: claude-sonnet-5
+    strongest_use_cases:
+      - primary Claude Code implementation
+      - parallel feature agents
+      - code review
+      - data analysis
+    weaknesses:
+      - less capable than Opus or Fable on the hardest long-horizon tasks
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: standard_agentic_pool
+    preferred_role: primary_claude_code_worker
+    fallback_model: claude-haiku-4-5
+    access_status: verify_in_claude_code
+    last_verified_date: "2026-08-05"
+
+  - provider: anthropic
+    model: claude-haiku-4-5
+    strongest_use_cases:
+      - cheap subagents
+      - classification
+      - repetitive maintenance
+      - fast verification passes
+    weaknesses:
+      - not suitable for architecture or major refactors
+    cloud_vs_local: cloud
+    cost_class: low
+    quota_class: high_volume
+    preferred_role: fast_subagent
+    fallback_model: gemini-3.5-flash-lite
+    access_status: verify_in_claude_code
+    last_verified_date: "2026-08-05"
+
+  - provider: google
+    model: gemini-3.1-pro-preview
+    strongest_use_cases:
+      - advanced multimodal understanding
+      - hard visual and UI analysis
+      - complex agentic planning
+      - independent architecture critique
+    weaknesses:
+      - preview stability and tighter rate limits
+      - higher cost than Flash
+    cloud_vs_local: cloud
+    cost_class: premium
+    quota_class: preview_limited
+    preferred_role: multimodal_architecture_reviewer
+    fallback_model: gemini-3.6-flash
+    access_status: verify_in_antigravity
+    last_verified_date: "2026-08-05"
+
+  - provider: google
+    model: gemini-3.6-flash
+    strongest_use_cases:
+      - Antigravity coding
+      - rapid agentic loops
+      - multimodal repository work
+      - computer-use workflows
+    weaknesses:
+      - not the top Google model for hardest reasoning
+      - visual styling may need explicit design constraints
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: standard_agentic_pool
+    preferred_role: primary_antigravity_worker
+    fallback_model: gemini-3.5-flash-lite
+    access_status: verify_in_antigravity
+    last_verified_date: "2026-08-05"
+
+  - provider: google
+    model: gemini-3.5-flash-lite
+    strongest_use_cases:
+      - high-volume subagents
+      - document extraction
+      - structured JSON generation
+      - low-cost autonomous execution
+    weaknesses:
+      - lower peak capability
+    cloud_vs_local: cloud
+    cost_class: low
+    quota_class: high_volume
+    preferred_role: economical_google_subagent
+    fallback_model: gpt-5.6-luna
+    access_status: verify_in_antigravity
+    last_verified_date: "2026-08-05"
+
+  - provider: perplexity
+    model: sonar-deep-research
+    strongest_use_cases:
+      - exhaustive current research
+      - source discovery
+      - market and legal landscape reports
+    weaknesses:
+      - expensive for simple lookups
+      - not a coding execution agent
+    cloud_vs_local: cloud
+    cost_class: premium
+    quota_class: research_limited
+    preferred_role: deep_research_specialist
+    fallback_model: sonar-reasoning-pro
+    access_status: verify_in_perplexity
+    last_verified_date: "2026-08-05"
+
+  - provider: perplexity
+    model: sonar-reasoning-pro
+    strongest_use_cases:
+      - grounded multi-step analysis
+      - source-backed comparisons
+      - research synthesis
+    weaknesses:
+      - slower and costlier than Sonar for direct lookup
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: standard_research_pool
+    preferred_role: research_analyst
+    fallback_model: sonar
+    access_status: verify_in_perplexity
+    last_verified_date: "2026-08-05"
+
+  - provider: perplexity
+    model: sonar
+    strongest_use_cases:
+      - quick current fact retrieval
+      - citation-backed lookups
+      - lightweight research subagents
+    weaknesses:
+      - not intended for exhaustive research or complex coding
+    cloud_vs_local: cloud
+    cost_class: low
+    quota_class: high_volume_research
+    preferred_role: research_lookup_worker
+    fallback_model: gemini-3.5-flash-lite
+    access_status: verify_in_perplexity
+    last_verified_date: "2026-08-05"
+
+  - provider: xai
+    model: grok-4.5
+    strongest_use_cases:
+      - real-time cultural intelligence
+      - X search and trend analysis
+      - general reasoning with live tools
+      - code execution
+    weaknesses:
+      - culture signals require source-quality checks
+      - not the default owner for core repository implementation
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: standard_live_data_pool
+    preferred_role: culture_and_realtime_intelligence_agent
+    fallback_model: grok-4.20-multi-agent
+    access_status: verify_in_grok
+    last_verified_date: "2026-08-05"
+
+  - provider: xai
+    model: grok-4.20-multi-agent
+    strongest_use_cases:
+      - parallel deep research
+      - broad option generation
+      - real-time cross-checking
+    weaknesses:
+      - beta surface
+      - duplicate work risk without scoped ownership
+    cloud_vs_local: cloud
+    cost_class: medium
+    quota_class: parallel_limited
+    preferred_role: parallel_research_swarm
+    fallback_model: grok-4.5
+    access_status: verify_in_grok
+    last_verified_date: "2026-08-05"
+
+execution_resources:
+  - provider: local
+    model: ubuntu-laptop-16gb
+    strongest_use_cases:
+      - repository checkout
+      - deterministic tests
+      - lightweight containers
+      - credential-bound local operations
+    weaknesses:
+      - constrained RAM
+      - should not host large parallel inference workloads
+    cloud_vs_local: local
+    cost_class: sunk_cost
+    quota_class: memory_bound
+    preferred_role: trusted_local_control_node
+    fallback_model: github-actions-hosted-runner
+    last_verified_date: "2026-08-05"
+
+  - provider: local
+    model: second-laptop-worker
+    strongest_use_cases:
+      - isolated integration testing
+      - long-running local jobs
+      - browser-authenticated tasks
+    weaknesses:
+      - specifications and availability not yet inventoried
+    cloud_vs_local: local
+    cost_class: sunk_cost
+    quota_class: unknown
+    preferred_role: isolated_secondary_worker
+    fallback_model: github-actions-hosted-runner
+    last_verified_date: "2026-08-05"
+
+  - provider: github
+    model: github-actions-hosted-runner
+    strongest_use_cases:
+      - cloud CI
+      - reproducible tests
+      - artifact generation
+      - branch-isolated verification
+    weaknesses:
+      - billed minutes and concurrency depend on plan
+      - secrets and permissions must be tightly scoped
+    cloud_vs_local: cloud
+    cost_class: low_to_medium
+    quota_class: plan_bound
+    preferred_role: canonical_verification_executor
+    fallback_model: ubuntu-laptop-16gb
+    last_verified_date: "2026-08-05"
+
+verification_sources:
+  openai_models: "https://developers.openai.com/api/docs/models"
+  openai_codex_usage: "https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan"
+  anthropic_models: "https://platform.claude.com/docs/en/about-claude/models/overview"
+  anthropic_pricing: "https://platform.claude.com/docs/en/about-claude/pricing"
+  google_models: "https://ai.google.dev/gemini-api/docs/models"
+  google_latest_models: "https://ai.google.dev/gemini-api/docs/latest-model"
+  perplexity_models: "https://docs.perplexity.ai/docs/sonar/models"
+  perplexity_pricing: "https://docs.perplexity.ai/docs/getting-started/pricing"
+  xai_models: "https://docs.x.ai/developers/models"
+  xai_pricing: "https://docs.x.ai/developers/pricing"
