@@ -2,8 +2,11 @@
 """Repository-local provenance contract checks without network dependencies."""
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
+
+from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMA = ROOT / "schemas/provenance/artifact-provenance.schema.json"
@@ -24,6 +27,19 @@ def load(path: Path):
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def build_validator() -> Draft202012Validator:
+    schema = load(SCHEMA)
+    Draft202012Validator.check_schema(schema)
+    return Draft202012Validator(schema, format_checker=FormatChecker())
+
+
+def validate_schema_record(validator: Draft202012Validator, record: dict, source: Path | str) -> None:
+    errors = sorted(validator.iter_errors(record), key=lambda error: list(error.absolute_path))
+    if errors:
+        details = "; ".join(f"{list(error.absolute_path)}: {error.message}" for error in errors)
+        raise AssertionError(f"{source} failed artifact provenance schema validation: {details}")
 
 
 def validate_record(record: dict) -> None:
@@ -59,32 +75,37 @@ def validate_record(record: dict) -> None:
         require(any(a["approval_type"] == "release" and a["status"] == "approved" for a in record["approvals"]), "cleared release requires release approval")
 
 
-def test_examples() -> None:
+def test_examples(validator: Draft202012Validator) -> None:
     for path in sorted(EXAMPLES.glob("*.json")):
-        validate_record(load(path))
+        record = load(path)
+        validate_schema_record(validator, record, path.relative_to(ROOT))
+        validate_record(record)
     legacy = load(EXAMPLES / "legacy-experiment-unknowns.json")
     require(legacy["classification"] == "experiment", "legacy example must be an experiment")
     require(legacy["release_clearance"]["status"] != "cleared", "legacy example must not be release-cleared")
     require(not any(a["approval_type"] == "canon" and a["status"] == "approved" for a in legacy["approvals"]), "legacy example must not be canon-approved")
 
 
-def test_invalid_claims_fail() -> None:
+def require_schema_failure(validator: Draft202012Validator, record: dict, message: str) -> None:
+    if not list(validator.iter_errors(record)):
+        raise AssertionError(message)
+
+
+def test_invalid_claims_fail(validator: Draft202012Validator) -> None:
     record = load(EXAMPLES / "legacy-experiment-unknowns.json")
     record["rights"]["ownership_status"] = "cleared"
-    try:
-        validate_record(record)
-    except AssertionError:
-        pass
-    else:
-        raise AssertionError("cleared ownership without evidence should fail")
+    require_schema_failure(validator, record, "cleared ownership without evidence should fail")
     record = load(EXAMPLES / "legacy-experiment-unknowns.json")
     record["release_clearance"]["status"] = "cleared"
-    try:
-        validate_record(record)
-    except AssertionError:
-        pass
-    else:
-        raise AssertionError("cleared release without evidence/reviewer should fail")
+    require_schema_failure(validator, record, "cleared release without evidence/reviewer should fail")
+
+
+def test_one_of_unknowns_are_unambiguous(validator: Draft202012Validator) -> None:
+    record = load(EXAMPLES / "legacy-experiment-unknowns.json")
+    validate_schema_record(validator, record, "legacy unknown-state fixture")
+    invalid = copy.deepcopy(record)
+    invalid["created_at"] = "not-a-date"
+    require_schema_failure(validator, invalid, "format checker should reject invalid date-time strings")
 
 
 def test_docs_terms() -> None:
@@ -95,9 +116,10 @@ def test_docs_terms() -> None:
 
 
 def main() -> None:
-    load(SCHEMA)
-    test_examples()
-    test_invalid_claims_fail()
+    validator = build_validator()
+    test_examples(validator)
+    test_invalid_claims_fail(validator)
+    test_one_of_unknowns_are_unambiguous(validator)
     test_docs_terms()
     print("provenance validation passed")
 
