@@ -1,5 +1,7 @@
 # Steelcore Research Open Questions
 
+The canonical source index is [source-register.csv](source-register.csv). The questions below apply across all research domains.
+
 ## Primary-source verification required
 
 1. What are the current official AI-content policies and upload fields for each candidate distributor?
