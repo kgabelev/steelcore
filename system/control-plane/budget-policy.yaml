@@ -1,0 +1,59 @@
+schema_version: "0.1"
+last_updated: "2026-08-05T04:42:00-04:00"
+defaults:
+  currency: USD
+  per_project_budget: 25
+  maximum_model_calls: 200
+  maximum_premium_calls: 20
+  parallel_agent_ceiling: 6
+  local_memory_ceiling_gb: 12
+  cloud_first_rules:
+    - use_cloud_for_parallel_or_long_running_work
+    - use_github_actions_for_reproducible_verification
+    - reserve_local_execution_for_credentials_browser_auth_and_fast_feedback
+    - do_not_run_multiple_memory_heavy_local_agents_on_16gb_host
+  stop_conditions:
+    - projected_cost_exceeds_80_percent_of_project_budget
+    - premium_calls_exceed_80_percent_of_limit
+    - repeated_failure_count_reaches_3_for_same_acceptance_test
+    - agent_cannot_produce_verifiable_artifact
+    - branch_conflict_or_scope_overlap_detected
+    - provider_quota_below_15_percent
+    - secrets_or_destructive_permissions_are_required_without_approval
+  approval_thresholds:
+    projected_cost_usd: 20
+    premium_calls: 15
+    parallel_agents: 6
+    destructive_write: always
+    production_deploy: always
+    new_paid_service_or_auto_reload: always
+
+project_classes:
+  exploration:
+    per_project_budget: 5
+    maximum_model_calls: 40
+    maximum_premium_calls: 3
+    parallel_agent_ceiling: 3
+  standard_build:
+    per_project_budget: 25
+    maximum_model_calls: 200
+    maximum_premium_calls: 20
+    parallel_agent_ceiling: 6
+  critical_release:
+    per_project_budget: 75
+    maximum_model_calls: 500
+    maximum_premium_calls: 50
+    parallel_agent_ceiling: 10
+    approval_required: true
+
+routing_economics:
+  default_worker_cost_class: low_or_medium
+  premium_escalation_requires:
+    - failed_lower_cost_attempt_with_artifact
+    - architecture_or_release_judgment
+    - materially_higher_expected_success_rate
+  duplicate_work:
+    allowed_only_for:
+      - independent_security_review
+      - final_release_verification
+      - benchmarked_model_comparison
