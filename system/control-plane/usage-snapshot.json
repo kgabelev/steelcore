@@ -1,0 +1,79 @@
+{
+  "schema_version": "0.1",
+  "last_checked_time": "2026-08-05T04:42:00-04:00",
+  "snapshot_type": "manual_evidence_plus_connector_inspection",
+  "providers": [
+    {
+      "provider": "openai",
+      "current_plan": "ChatGPT Plus",
+      "remaining_quota": {
+        "codex_usage_percent_remaining": 100,
+        "gpt_5_6_usage_percent_remaining": 85,
+        "weekly_limit_percent_remaining": 100
+      },
+      "remaining_credits": "unknown",
+      "reset_time": "provider_ui_not_captured",
+      "auto_reload_status": "unknown",
+      "confidence": "medium",
+      "evidence": "User-provided account usage screenshot reviewed 2026-08-05"
+    },
+    {
+      "provider": "anthropic",
+      "current_plan": "Claude Max 20x",
+      "remaining_quota": "dashboard displayed full current allowance; numeric percentage not exposed in evidence",
+      "remaining_credits": "not_applicable_or_unknown",
+      "reset_time": "provider_ui_not_captured",
+      "auto_reload_status": "unknown",
+      "confidence": "medium",
+      "evidence": "User-provided Claude usage screenshot reviewed 2026-08-05"
+    },
+    {
+      "provider": "google",
+      "current_plan": "Google AI Pro",
+      "remaining_quota": "unknown",
+      "remaining_credits": "unknown",
+      "reset_time": "unknown",
+      "auto_reload_status": "unknown",
+      "confidence": "low",
+      "evidence": "User-provided Google account screenshot reviewed 2026-08-05"
+    },
+    {
+      "provider": "perplexity",
+      "current_plan": "Perplexity Pro",
+      "remaining_quota": {
+        "api_credits_usd": 0
+      },
+      "remaining_credits": 0,
+      "reset_time": "unknown",
+      "auto_reload_status": "off_or_not_configured",
+      "confidence": "high",
+      "evidence": "User-provided Perplexity API credit screenshot reviewed 2026-08-05"
+    },
+    {
+      "provider": "xai",
+      "current_plan": "unknown",
+      "remaining_quota": "unknown",
+      "remaining_credits": "unknown",
+      "reset_time": "unknown",
+      "auto_reload_status": "unknown",
+      "confidence": "low",
+      "evidence": "No authenticated usage surface available to this orchestrator"
+    },
+    {
+      "provider": "github",
+      "current_plan": "private repository access confirmed",
+      "remaining_quota": "actions minutes and concurrency not yet inspected",
+      "remaining_credits": "unknown",
+      "reset_time": "unknown",
+      "auto_reload_status": "not_applicable",
+      "confidence": "high_for_repository_access_low_for_actions_quota",
+      "evidence": "GitHub connector confirmed admin access to kgabelev/steelcore"
+    }
+  ],
+  "refresh_rules": {
+    "before_each_project": true,
+    "before_premium_swarm": true,
+    "maximum_snapshot_age_hours": 24,
+    "never_invent_missing_quota": true
+  }
+}
