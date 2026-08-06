@@ -1,6 +1,6 @@
 # Current State
 
-**Date:** 2026-08-05  
+**Date:** 2026-08-06  
 **Owner:** Kirill Gabelev  
 **Current milestone:** M1 — Canonical Project Foundation
 
@@ -11,6 +11,12 @@
 - Model registry, budget policy, usage snapshot, routing policy, and build history exist.
 - Automated control-plane validation runs in GitHub Actions.
 - Initial legal, industry, lyrics, artwork, and Suno experiments exist outside the canonical repository.
+- A reproducible Steel render register (`catalog/render-register/`) and a Suno seed-variance
+  baseline (`research/render-register/EXP-000-suno-seed-variance.md`) were built from the 37-file
+  Steel MP3 Drive folder. Written to isolated subpaths, not the canonical `catalog/` and
+  `research/` trees, because those are owned by the still-in-rework `creative-catalog-import` and
+  `research-import` workstreams; see `catalog/render-register/OPEN_CORRECTIONS.md` for open items
+  and the deferred reconciliation table.
 
 ## In Progress
 
