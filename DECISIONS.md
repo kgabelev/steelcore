@@ -61,3 +61,11 @@ Every canonical creative artifact records its human contribution, AI tools used,
 **Date:** 2026-08-05
 
 Human approval is always required for persona canon, legal posture, external publication, commercial release, spending, destructive actions, secret access expansion, and production deployment.
+
+## D-009 — Isolated-path precedent for path-ownership conflicts
+
+**Status:** Approved  
+**Date:** 2026-08-06  
+**Approved by:** Kirill Gabelev
+
+When a new task's requested output paths overlap an active, unmerged workstream's `owned_paths` in `EXECUTION_LEDGER.yaml` (triggering the `branch_conflict_or_scope_overlap_detected` stop condition in `system/control-plane/budget-policy.yaml`), the agent must stop and surface the conflict rather than write into the contested path. If the owner then chooses to proceed rather than wait, the agent writes to new, clearly isolated subdirectories instead (e.g. `catalog/render-register/` instead of `catalog/`) and records the deferred reconciliation explicitly — never silently into the contested path. First applied to the `render-register-v1` workstream, whose requested paths (`catalog/`, `research/`, `tests/`) overlapped `creative-catalog-import` and `research-import`.

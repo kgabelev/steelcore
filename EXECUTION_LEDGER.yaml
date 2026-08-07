@@ -1,5 +1,5 @@
 schema_version: "0.1"
-last_updated: "2026-08-05T07:36:35-04:00"
+last_updated: "2026-08-06T18:30:00-04:00"
 repository: kgabelev/steelcore
 owner: Kirill Gabelev
 current_milestone: M2-canonical-source-import-and-provenance
@@ -105,6 +105,38 @@ workstreams:
       - counsel_review_queue_is_explicit
     status: rework_required
     next_action: model_explicit_unknowns_and_enforce_release_eligibility_in_the_provenance_contract
+
+  - id: render-register-v1
+    milestone: M2
+    objective: Build a reproducible render register (hashes, duplicate groups, sibling pairs, lineage candidates) from the Steel MP3 catalog Drive folder, without touching source audio.
+    owner: Claude-Sonnet-5
+    branch: catalog/render-register-v1
+    owned_paths:
+      - catalog/render-register/
+      - scripts/render-register/
+      - research/render-register/
+      - tests/render-register/
+    note: >-
+      Deliberately written to isolated subpaths, not catalog/RENDER_REGISTER.csv or
+      research/music-science/EXP-000-suno-seed-variance.md as originally requested, because
+      catalog/ is owned by creative-catalog-import and research/ is owned by research-import,
+      both status rework_required at the time this workstream started. Owner approved the
+      isolated-path scope explicitly. Reconciliation into the canonical catalog/ and research/
+      trees is deferred; see catalog/render-register/OPEN_CORRECTIONS.md section 7 for the
+      exact path-by-path reconciliation table.
+    dependencies: []
+    acceptance_tests:
+      - unique_render_counts_are_verified_not_assumed
+      - duplicate_groups_match_by_sha256
+      - required_register_fields_present
+      - suno_ids_and_timestamps_traceable_to_extracted_id3_evidence
+      - inferred_sibling_and_lineage_relationships_are_labeled_not_asserted
+      - build_script_contains_no_source_mutation_logic
+    status: complete_pending_owner_review
+    completion_evidence:
+      - tests/render-register/test_render_register.py (all checks pass)
+      - catalog/render-register/OPEN_CORRECTIONS.md
+    next_action: owner_resolves_two_failed_drive_downloads_and_locates_the_external_song_id_workbook_referenced_in_OPEN_CORRECTIONS_section_5
 
   - id: artist-canon
     milestone: M3
